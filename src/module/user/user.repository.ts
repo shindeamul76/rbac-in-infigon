@@ -33,11 +33,14 @@ export class UserRepository {
 
   async findAllUsers() {
     return this.prisma.user.findMany({
-      include: {
+      select: {
+        id: true,
+        email: true,
         roles: {
-          include: {
-            role: true,
-          },
+          select: {
+            userId: true,
+            roleId: true
+          }
         },
       },
     });
@@ -107,13 +110,13 @@ export class UserRepository {
 
   async findUserWithPassword(email: string): Promise<any | null> {
     return await this.prisma.user.findUnique({
-      where: { email: email },
-      select: {
-        id: true,
-        email: true,
-        password: true,
-        tokenVersion: true,
-        roles: true,
+    where: { email: email },
+    include: {
+      roles: {
+        include: {
+          role: true,
+        },
+      },
     },
     });
   }

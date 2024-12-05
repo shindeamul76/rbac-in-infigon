@@ -9,11 +9,13 @@ export class AuthService {
   constructor(private readonly authRepository: AuthRepository) {}
 
   createAccessToken(payload: AccessTokenPayload): string {
-    return sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+    const accessToken =  sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+    return accessToken
   }
 
   createRefreshToken(payload: RefreshTokenPayload): string {
-    return sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+    const refreshToken =  sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+    return refreshToken
   }
 
   assignTokens(userId: number, role: any, tokenVersion: number) {
@@ -24,10 +26,8 @@ export class AuthService {
   }
 
   async refreshTokens(refreshToken: string) {
-    // Validate refresh token
     const decodedToken = await this.authRepository.validateRefreshToken(refreshToken);
 
-    // Find user by token version and ID
     const user = await this.authRepository.findUserForRefresh(
       decodedToken.userId,
       decodedToken.tokenVersion,

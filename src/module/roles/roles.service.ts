@@ -10,13 +10,13 @@ export class RolesService {
   async createRole(createRoleDto: CreateRoleDto) {
     const { name } = createRoleDto;
 
-    // Check if the role already exists
+
     const existingRole = await this.prisma.role.findUnique({ where: { name } });
     if (existingRole) {
       throw new BadRequestException('Role already exists.');
     }
 
-    // Create and return the new role
+
     return this.prisma.role.create({
       data: { name },
     });
@@ -29,13 +29,13 @@ export class RolesService {
   async updateRole(id: number, updateRoleDto: UpdateRoleDto) {
     const { name } = updateRoleDto;
 
-    // Check if the role exists
+
     const existingRole = await this.prisma.role.findUnique({ where: { id } });
     if (!existingRole) {
       throw new BadRequestException('Role not found.');
     }
 
-    // Update the role
+
     return this.prisma.role.update({
       where: { id },
       data: { name },
@@ -43,13 +43,12 @@ export class RolesService {
   }
 
   async deleteRole(id: number) {
-    // Check if the role exists
+
     const existingRole = await this.prisma.role.findUnique({ where: { id } });
     if (!existingRole) {
       throw new BadRequestException('Role not found.');
     }
 
-    // Delete the role
     return this.prisma.role.delete({
       where: { id },
     });

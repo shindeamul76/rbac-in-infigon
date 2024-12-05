@@ -1,8 +1,9 @@
-// import { User, UserRole } from 'src/module/user/user.entity';
+
+import { UserRole } from "@prisma/client";
 
 export interface AccessTokenPayload {
   userId: number;
-  role: "UserRole";
+  role: any;
 }
 
 export interface RefreshTokenPayload {

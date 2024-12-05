@@ -7,9 +7,9 @@ import { RolesModule } from './module/roles/roles.module';
 
 @Module({
   imports: [
-    AuthModule,  // Import the AuthModule for authentication logic
-    UserModule,  // Import the UserModule for user management
-    RolesModule, // Import the RolesModule for role management
+    AuthModule,
+    UserModule, 
+    RolesModule, 
   ],
   controllers: [AppController],
   providers: [AppService],

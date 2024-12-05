@@ -9,5 +9,5 @@ export class UpdateUserDto {
   password: string;
 
   @IsNotEmpty()
-  roles: string[];
+  roles: any[];
 }

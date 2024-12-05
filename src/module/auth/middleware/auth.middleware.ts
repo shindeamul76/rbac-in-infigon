@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware, ForbiddenException } from '@nestjs/common';
+import { Injectable, NestMiddleware, ForbiddenException, UnauthorizedException } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { UserService } from 'src/module/user/user.service';
@@ -26,17 +26,25 @@ export class AuthMiddleware implements NestMiddleware {
         process.env.ACCESS_TOKEN_SECRET,
       ) as AccessTokenPayload;
 
-
       const user = await this.userService.findOneById(userId);
 
       if (!user) {
-        throw new ForbiddenException('Invalid token. User does not exist.');
+        throw new UnauthorizedException('Invalid token. User does not exist.');
       }
-
 
       req.user = { ...user, role };
     } catch (error) {
-      throw new ForbiddenException('Invalid or expired token.');
+
+      console.log(error, "eroroe")
+      if (error.name === 'TokenExpiredError') {
+        throw new UnauthorizedException('Token has expired.');
+      }
+
+      if (error.name === 'JsonWebTokenError') {
+        throw new UnauthorizedException('Invalid token.');
+      }
+
+      throw new ForbiddenException('Access denied.');
     }
 
     next();

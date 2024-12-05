@@ -32,7 +32,7 @@ export class UserService {
     return await this.userRepository.findOneUser(email)
   }
 
-  async findUserWithPassword(email: string): Promise<User | null> {
+  async findUserWithPassword(email: string): Promise<any | null> {
     return await this.userRepository.findUserWithPassword(email)
   }
   async findOneById(id: number): Promise<User | null> {

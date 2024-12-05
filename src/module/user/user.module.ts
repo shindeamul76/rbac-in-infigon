@@ -1,9 +1,10 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { forwardRef, MiddlewareConsumer, Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserRepository } from './user.repository';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthModule } from '../auth/auth.module';
+import { AuthMiddleware } from '../auth/middleware/auth.middleware';
 
 @Module({
   imports: [forwardRef(() => AuthModule)],
@@ -11,4 +12,8 @@ import { AuthModule } from '../auth/auth.module';
   providers: [UserService, UserRepository, PrismaService],
   exports: [UserService]
 })
-export class UserModule {}
+export class UserModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes(UserController);
+  }
+}
