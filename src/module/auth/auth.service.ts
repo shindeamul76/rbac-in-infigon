@@ -1,6 +1,5 @@
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
-import { UserRole } from '@prisma/client';
 import { AuthRepository } from './auth.repository';
 import { AccessTokenPayload, RefreshTokenPayload } from './type/jwtPayload';
 

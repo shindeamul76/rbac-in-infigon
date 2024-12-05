@@ -15,7 +15,6 @@ import {
   import { CookieInterceptor } from './interceptor/cookie.interceptor';
   import { LoginResponse } from './type/loginResponse';
   import { RolesService } from '../roles/roles.service';
-import { UserRole } from '@prisma/client';
 
   
   @UseInterceptors(CookieInterceptor)
