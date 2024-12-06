@@ -1,99 +1,120 @@
+<!-- PROJECT LOGO -->
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://github.com/shindeamul76/rbac-in-infigon">
+   <img src="https://media.licdn.com/dms/image/v2/C4D0BAQFXgqA1XJO9yA/company-logo_200_200/company-logo_200_200/0/1677563696019/infigon_futures_logo?e=2147483647&v=beta&t=tbTMokO31rg-z5PQhRyzl3R4V_Ka8YancsWb0NJbWq0" alt="Logo">
+  </a>
+
+  <h3 align="center">Role Based Access Control</h3>
+
+  <p align="center">
+    Become a Certified Career Planner.
+    <br />
+    <a href="https://www.infigonfutures.com/"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/shindeamul76/rbac-in-infigon">Discussions</a>
+    ·
+    <a href="https://www.infigonfutures.com/">Website</a>
+    ·
+    <a href="https://github.com/shindeamul76/rbac-in-infigon/issues">Issues</a>
+    ·
+    <a href="https://www.infigonfutures.com/">Roadmap</a>
+  </p>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## About the Project
 
-## Description
+# Role-Based Access Control (RBAC) System for Your Applications
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+To manage user roles, permissions, and access with simplicity and flexibility.
 
-## Project setup
+Most systems require a robust role-based access control mechanism for managing data access, workflows, and operations. Existing solutions can be restrictive, complicated, or not customizable enough for specific business needs.
 
-```bash
-$ yarn install
+That’s where this RBAC system comes in. Built with NestJS, Prisma, and PostgreSQL, it offers complete control over role management, user permissions, and data security while being highly customizable and easy to integrate.
+
+
+### Built With
+
+- [Nest.js]
+- [PostgreSql]
+- [Prisma.io]
+- [Swagger]
+
+## Getting Started
+
+To get a local copy up and running, please follow these simple steps.
+
+### Prerequisites
+
+Here is what you need to be able to run Cal.com.
+
+- Node.js (Version: >=18.x)
+- PostgreSQL (Version: >=13.x)
+- Yarn _(recommended)
+
+
+## Development
+
+### Setup
+
+1. Clone the repo into a public GitHub repository (or fork https://github.com/shindeamul76/rbac-in-infigon.git/fork).
+
+   ```sh
+   git clone https://github.com/shindeamul76/rbac-in-infigon.git
+   ```
+
+2. Go to the project folder
+
+   ```sh
+   cd rbac-in-infigon
+   ```
+
+3. Install packages with yarn
+
+   ```sh
+   yarn
+   ```
+
+4. Set up your `.env` file
+
+   - Duplicate `.env.example` to `.env`
+   - Use `openssl rand -base64 32` to generate a key and add it under `ACCESS_TOKEN_SECRET` in the `.env` file.
+   - Use `openssl rand -base64 32` to generate a key and add it under `REFRESH_TOKEN_SECRET` in the `.env` file.
+
+5. Run Prisma migration
+
+   ```sh
+   yarn run prisma:migrate-deploy
+   ```
+
+
+5. Seed data In database
+
+   ```sh
+   yarn run prisma:seed
+   ```
+
+6. Start Server Locally
+
+   ```sh
+   yarn run start:dev
+   ```
+
+
+#### Quick start with `yarn:quick`
+
+> - **Requires Docker and Docker Compose to be installed**
+> - Will start a local Postgres instance with a few test users - the credentials will be logged in the console
+
+```sh
+yarn run yarn:quick
 ```
+##### Approach 2
 
-## Compile and run the project
+Seed the local db by running
 
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+```sh
+cd packages/prisma
+yarn prisma:seed
 ```
-
-## Run tests
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

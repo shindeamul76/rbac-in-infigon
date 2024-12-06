@@ -13,7 +13,7 @@ services:
       - REFRESH_TOKEN_SECRET=infigon-refresh-token
     depends_on:
       - db
-    command: ["yarn", "start:prod"]
+    command: ["sh", "-c", "yarn prisma:migrate-deploy && yarn prisma:seed && yarn run start:prod"]
 
   db:
     image: postgres:14
