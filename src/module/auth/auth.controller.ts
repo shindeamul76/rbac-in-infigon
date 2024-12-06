@@ -15,7 +15,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { CookieInterceptor } from './interceptor/cookie.interceptor';
 import { LoginResponse } from './type/loginResponse';
 import { RolesService } from '../roles/roles.service';
-import { ApiTags, ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiBody, ApiOperation, ApiResponse, ApiCookieAuth } from '@nestjs/swagger';
 
 @ApiTags('Auth') // Groups these endpoints under "Auth" in Swagger UI
 @UseInterceptors(CookieInterceptor)
@@ -28,7 +28,7 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  @ApiOperation({ summary: 'Register a new user' })
+  @ApiOperation({ summary: 'Register A New User' })
   @ApiResponse({ status: 201, description: 'User registered successfully and tokens returned.' })
   @ApiResponse({ status: 400, description: 'User already exists or invalid roles provided.' })
   @ApiBody({ type: RegisterUserDto })
@@ -61,7 +61,7 @@ export class AuthController {
   }
 
   @Post('login')
-  @ApiOperation({ summary: 'Log in an existing user' })
+  @ApiOperation({ summary: 'Loggin Existing User' })
   @ApiResponse({ status: 200, description: 'User logged in successfully and tokens returned.' })
   @ApiResponse({ status: 403, description: 'Invalid email or password.' })
   @ApiBody({ type: LoginUserDto })
@@ -84,8 +84,9 @@ export class AuthController {
     return tokens;
   }
 
+  @ApiCookieAuth('refreshToken')
   @Post('refresh-token')
-  @ApiOperation({ summary: 'Refresh tokens using a valid refresh token' })
+  @ApiOperation({ summary: 'Refresh Token For Valid AccessToken' })
   @ApiResponse({ status: 200, description: 'New access and refresh tokens returned.' })
   @ApiResponse({ status: 403, description: 'Refresh token not found or invalid.' })
   async getTokens(@Req() req): Promise<LoginResponse> {

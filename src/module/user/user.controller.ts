@@ -24,7 +24,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  // @ApiOperation({ summary: 'Create a new user' })
+  @ApiOperation({ summary: 'Not required for Testing it used in Register api' })
   // @ApiResponse({ status: 201, description: 'User created successfully.' })
   // @ApiResponse({ status: 400, description: 'Bad request.' })
   // @ApiBody({ type: CreateUserDto })
