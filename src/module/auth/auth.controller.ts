@@ -28,7 +28,7 @@ import {
   
     @Post('register')
     async registerUser(@Body() registerUserDto: RegisterUserDto): Promise<LoginResponse> {
-      const { email, password, roles: inputRoles } = registerUserDto;
+      const { email, password, roles: inputRoles, organizationId } = registerUserDto;
   
       const existingUser = await this.userService.findOneByEmail(email);
       if (existingUser) {
@@ -46,6 +46,7 @@ import {
       const user = await this.userService.create({
         email,
         password: hashedPassword,
+        organizationId,
         roles,
       });
 

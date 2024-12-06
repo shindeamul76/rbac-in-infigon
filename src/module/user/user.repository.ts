@@ -8,13 +8,14 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(data: { email: string; password: string; roles: any[] }) {
-    const { email, password, roles } = data;
+  async createUser(data: { email: string; password: string; roles: any[], organizationId: number | null }) {
+    const { email, password, roles, organizationId } = data;
 
     return this.prisma.user.create({
       data: {
         email,
         password,
+        organizationId: organizationId,
         roles: {
           create: roles.map((role) => ({
             roleId: role.id,

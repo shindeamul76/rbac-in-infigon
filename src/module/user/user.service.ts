@@ -9,7 +9,11 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDto) {
-    return this.userRepository.createUser(createUserDto);
+    const { organizationId, ...rest } = createUserDto;
+    return this.userRepository.createUser({
+      ...rest,
+      organizationId: organizationId || null,
+    });
   }
 
   async findAll() {

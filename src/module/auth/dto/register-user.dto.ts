@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsArray } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsArray, IsOptional, IsNumber } from 'class-validator';
 
 export class RegisterUserDto {
   @IsEmail()
@@ -14,9 +14,13 @@ export class RegisterUserDto {
 
   @IsArray()
   @IsNotEmpty({ each: true })
-  roles: string[]; 
+  roles: string[];
 
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  @IsOptional() 
+  @IsNumber()
+  organizationId?: number;
 }
