@@ -118,3 +118,17 @@ Seed the local db by running
 cd packages/prisma
 yarn prisma:seed
 ```
+
+Run Prisma studio to see data
+
+```sh
+npx prisma studio
+```
+
+
+Open Swagger in 
+
+```sh
+http://localhost:3000/api
+```
+
